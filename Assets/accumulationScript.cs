@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using accumulation;
+using System.Text.RegularExpressions;
 
 public class accumulationScript : MonoBehaviour
 {
@@ -226,7 +227,7 @@ public class accumulationScript : MonoBehaviour
         }
         Start();
     }
-    
+
 #pragma warning disable 414
     private string TwitchHelpMessage = @"Submit the answer with “!{0} submit 1234”. Clear the display with “!{0} clear”.";
 #pragma warning restore 414
