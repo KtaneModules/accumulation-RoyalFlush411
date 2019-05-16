@@ -226,4 +226,20 @@ public class accumulationScript : MonoBehaviour
         }
         Start();
     }
+    
+#pragma warning disable 414
+    private string TwitchHelpMessage = @"Submit the answer with “!{0} submit 1234”. Clear the display with “!{0} clear”.";
+#pragma warning restore 414
+
+    KMSelectable[] ProcessTwitchCommand(string command)
+    {
+        Match m;
+
+        command = command.Trim().ToLowerInvariant();
+        if (command == "clear")
+            return new[] { clearButton };
+        else if ((m = Regex.Match(command, @"^submit (\d+)$", RegexOptions.IgnoreCase)).Success)
+            return m.Groups[1].Value.Select(ch => keypad[(ch - '0' + 9) % 10]).Concat(new[] { submitButton }).ToArray();
+        return null;
+    }
 }
